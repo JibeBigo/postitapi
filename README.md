@@ -1,6 +1,6 @@
 # vuejspostit
 
-With NoteIt (even paid for a logo on fiverr), you can:
+With NoteIt (even made a slick logo for it), you can:
 
 - Add Notes (big squares)
 - Add Content to these notes (tasks)
