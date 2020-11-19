@@ -1,5 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+<img src="https://www.memesmonkey.com/images/memesmonkey/53/5360a64091ba4d70316624e5ed99b584.jpeg" alt="">
+    <h1>Nothing to see here</h1>
   </div>
 </template>

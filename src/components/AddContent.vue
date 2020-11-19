@@ -1,6 +1,6 @@
 <template>
   <form @submit="onSubmit">
-    <div class="input-group mb-3 mx-2" style="width: 16rem">
+    <div class="input-group">
       <input
         type="text"
         v-model="newContent"
@@ -8,9 +8,15 @@
         placeholder="Add content"
         name="newContent"
       />
-      <button class="btn btn-outline-primary" type="submit" value="Submit">
-        Add
-      </button>
+      <div class="input-group-append">
+        <button
+          class="btn btn-primary text-white"
+          type="submit"
+          value="Submit"
+        >
+          Add
+        </button>
+      </div>
     </div>
   </form>
 </template>
@@ -36,8 +42,8 @@ export default {
         const response = await axios.get(
           "https://thesimpsonsquoteapi.glitch.me/quotes"
         );
-        // var quote = response.data.quote[0]
-        this.newContent = response.data[0].quote + " - " + response.data[0].character;
+        this.newContent =
+          response.data[0].quote + " - " + response.data[0].character;
       }
       parsedContent.push(this.newContent);
       this.addContent({
@@ -57,5 +63,21 @@ export default {
 }
 .card-text {
   text-align: start;
+}
+.input-group {
+  margin: auto;
+  position: relative;
+  bottom: 0px;
+}
+.btn:hover {
+  color: white !important;
+}
+.btn{
+    border-radius: 0 0 0.1rem 0
+}
+input{
+    border-radius: 0 0 0 0.25rem;
+    border-left: none;
+    border-bottom: none;
 }
 </style>

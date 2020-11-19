@@ -40,6 +40,13 @@ const actions = {
     );
     commit("newContent", { id: response.data.note_id, content: note.content });
   },
+  async deleteContentItem( {commit}, editedNote ) {
+    const response = await axios.put(
+      `http://postit.wac.under-wolf.eu/notes/${editedNote.id}`,
+      { title: editedNote.title, content: editedNote.newContent },
+    );
+    commit("removeContent", { id: response.data.note_id, content: editedNote.newContent });
+  },
 };
 const mutations = {
   setNotes: (state, notes) => (state.notes = notes),
@@ -47,6 +54,10 @@ const mutations = {
   removeNote: (state, id) =>
     (state.notes = state.notes.filter((note) => note._id !== id)),
   newContent: (state, data) => {
+    let index = state.notes.findIndex((note) => note._id === data.id);
+    state.notes[index].content = data.content;
+  },
+  removeContent: (state, data) => {
     let index = state.notes.findIndex((note) => note._id === data.id);
     state.notes[index].content = data.content;
   },

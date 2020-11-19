@@ -19,7 +19,7 @@
           >
           </b-form-input>
         </b-form-group>
-        <b-button type="submit" variant="outline-warning">Add</b-button>
+        <b-button type="submit" variant="outline-warning" class="text-warning">Add</b-button>
       </b-form>
     </b-card>
   </div>
@@ -55,5 +55,8 @@ export default {
 }
 .card-header {
   text-align: start;
+}
+.btn:hover {
+  color: white !important;
 }
 </style>

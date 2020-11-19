@@ -1,24 +1,21 @@
 <template>
-  <div>
-    <AddContent v-bind:note="note"/>
-    <b-card
-      v-for="subnote in note.content"
-      :key="subnote"
-      border-variant="warning"
-      class="my-3"
-    >
-      {{ subnote }}
-    </b-card>
+  <div class="d-flex flex-column mb-8" id="container">
+    <ContentItem v-for="content in note.content" :key="note.content.indexOf(content)" v-bind:content="content" v-bind:note="note"/>
+    <div id="add-content-input">
+      <AddContent v-bind:note="note" />
+    </div>
   </div>
 </template>
 
 <script>
-import AddContent from '../components/AddContent.vue'
+import AddContent from "../components/AddContent.vue";
+import ContentItem from "./ContentItem.vue";
 
 export default {
   name: "Note",
   components: {
-    AddContent
+    AddContent,
+    ContentItem,
   },
   props: ["note"],
 };
@@ -43,5 +40,14 @@ a {
 .card-body {
   padding: 1rem;
   background-color: rgba(255, 217, 0, 0.2) !important;
+  border: 1px solid #ffc1078f;
+  border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) calc(0.25rem - 1px)
+    calc(0.25rem - 1px);
+}
+#add-content-input{
+  position: absolute; 
+  bottom: 0;
+  left:0;
+  width: 100%;
 }
 </style>
