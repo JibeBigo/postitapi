@@ -7,8 +7,11 @@ With NoteIt (even made a slick logo for it), you can:
 - Delete Notes & Content
 
 Everything is pulled and pushed from an API endpoint and shared with everybody which is really handy as everyone can delete each other's notes and add their own.
+
 Tried to make a pretty slick design, following the original theme of commonly used Post It notes.
+
 I've decided to not add the edition of note title or it's content as it follows the samed idead as editing the content and wouldn't be super useful.
+
 I added a draggable content inside the notes instead. It doesn't save to the API but it looks pretty nice before you refresh the page.
 
 ## Project setup
