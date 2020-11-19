@@ -1,22 +1,20 @@
 <template>
-  <div id="app">
-    <div id="nav" class="navbar navbar-light shadow-sm bg-light">
-      <a class="navbar-brand" href="/">
-      <img src="./assets/notes.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-      Postit App
-      </a>
-      <ul class="navbar-nav d-flex flex-row justify-content-between mr-3" style="width:130px">
-        <li class="nav-item">
-          <router-link to="/">Home</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/notes">Notes</router-link>
-        </li>
-      </ul>
-    </div>
+  <v-app id="app">
+    <Navbar />
     <router-view/>
-  </div>
+  </v-app>
 </template>
+
+<script>
+import Navbar from '@/components/layout/Navbar.vue'
+
+export default {
+  name: "App",
+  components: {
+    Navbar
+  }
+}
+</script>
 
 <style>
 #app {
@@ -28,7 +26,7 @@
 }
 
 #nav {
-  padding: 10px;
+  padding: 30px;
 }
 
 #nav a {
@@ -38,8 +36,5 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
-}
-.navbar-light {
-  background-color: #FFFFFF !important;
 }
 </style>
