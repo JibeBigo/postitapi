@@ -1,8 +1,44 @@
-# postit
+# vuejspostit
 
 ## Project setup
 ```
 npm install
+```
+## Installing Boostrap Vue & Icons
+
+documentation on install:
+```
+npm install vue bootstrap-vue bootstrap
+```
+Then, register BootstrapVue in your app entry point:
+```
+import Vue from 'vue'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+```
+// Install BootstrapVue
+```
+Vue.use(BootstrapVue)
+```
+
+// Install the BootstrapVue icon components plugin
+```
+Vue.use(IconsPlugin)
+```
+And import Bootstrap and BootstrapVue css files:
+```
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+```
+available here: https://bootstrap-vue.org/docs
+
+## Vuetify
+```
+vue add vuetify
+```
+## (Optionnal) Vue Draggable
+Allows to drag content of notes within notes (does not save to api yet)
+```
+npm install vuedraggable
 ```
 
 ### Compiles and hot-reloads for development
