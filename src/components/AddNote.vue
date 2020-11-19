@@ -1,62 +1,43 @@
 <template>
-  <div>
-    <b-card
-      class="m-2"
-      border-variant="warning"
-      header="Add Note"
-      header-bg-variant="warning"
-      header-text-variant="white"
-      text-align="center"
-    >
-      <b-form @submit="onSubmit">
-        <b-form-group id="input-group-1" label-for="input-1">
-          <b-form-input
-            id="input-1"
-            v-model="title"
-            type="text"
-            required
-            placeholder="Enter a title"
-          >
-          </b-form-input>
-        </b-form-group>
-        <b-button type="submit" variant="outline-warning" class="text-warning">Add</b-button>
-      </b-form>
-    </b-card>
-  </div>
+    <form @submit="addNote">
+        <div class="input-group mb-3 mx-2" style="width: 16rem;">
+            <input type="text" v-model="content" class="form-control" placeholder="Add new note" name="content">
+            <button class="btn btn-outline-primary" type="submit" value="Submit" @click="$emit('make-toast')">Add</button>
+        </div>
+    </form>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import uuid from 'uuid';
+
 export default {
-  name: "AddNote",
-  data() {
-    return {
-      title: "",
-    };
-  },
-  methods: {
-    ...mapActions(["addNote"]),
-    onSubmit(e) {
-      e.preventDefault();
-      this.addNote(this.title);
-      this.title = "";
+    name: "AddNote",
+    data() {
+        return {
+            content: ''
+        }
     },
-  },
-};
+    methods: {
+        addNote(e) {
+            e.preventDefault();
+            const newNote = {
+                id: uuid.v4(),
+                content: this.content,
+                list_id: this.$attrs.list.id
+            }
+            this.$emit('add-note', newNote);
+            this.content= ''
+        }
+    }
+}
+
 </script>
 
 <style scoped>
-.card {
-  min-width: 18rem;
+.bg-warning{
+    background-color: rgba(255, 217, 0, 0.2) !important;
 }
-.card-body {
-  padding: 10px 10px;
-  overflow: auto;
-}
-.card-header {
-  text-align: start;
-}
-.btn:hover {
-  color: white !important;
+.card-text{
+    text-align: start;
 }
 </style>

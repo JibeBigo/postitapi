@@ -1,4 +1,4 @@
-# vuejspostit
+# postit
 
 ## Project setup
 ```
