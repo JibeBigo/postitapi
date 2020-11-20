@@ -68,10 +68,10 @@ export default {
   min-width: 14rem;
 }
 .card {
-  min-height: 20rem;
-  max-height: 20rem;
-  min-width: 18rem;
-  max-width: 18rem;
+  height: 20rem;
+
+  width: 18rem;
+
 }
 .card-header{
   padding: 0.5rem 1rem;

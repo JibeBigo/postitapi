@@ -4,11 +4,9 @@ const state = {
   notes: [],
 };
 
-
 const getters = {
   allNotes: (state) => state.notes,
 };
-
 
 const actions = {
   async fetchNotes({ commit }) {
@@ -49,15 +47,17 @@ const actions = {
     commit("newContent", { id: response.data.note_id, content: note.content });
   },
 
-  async deleteContentItem( { commit }, editedNote ) {
+  async deleteContentItem({ commit }, editedNote) {
     const response = await axios.put(
       `http://postit.wac.under-wolf.eu/notes/${editedNote.id}`,
       { title: editedNote.title, content: editedNote.newContent },
     );
-    commit("removeContent", { id: response.data.note_id, content: editedNote.newContent });
+    commit("removeContent", {
+      id: response.data.note_id,
+      content: editedNote.newContent,
+    });
   },
 };
-
 
 const mutations = {
   setNotes: (state, notes) => (state.notes = notes),
