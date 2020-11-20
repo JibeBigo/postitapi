@@ -6,6 +6,8 @@
       </v-icon>
       Delete All Notes
     </v-btn> -->
+    <div class="container">
+
     <div class="d-flex flex-row flex-wrap justify-content-start">
       <AddNote />
       <div data-app class="note" v-for="note in allNotes" :key="note.id">
@@ -33,6 +35,7 @@
           <Note v-bind:note="note" />
         </b-card>
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -86,5 +89,8 @@ export default {
   border-radius: 4px;
   background-color: rgba(90, 90, 90, 0.144);
   box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+.container{
+  max-width: 1250px;
 }
 </style>

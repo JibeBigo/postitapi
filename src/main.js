@@ -16,7 +16,14 @@ new Vue({
   router,
   store,
   vuetify,
-  render: h => h(App)
-}).$mount('#app')
+  beforeCreate() {
+    this.$store.commit("initialiseStore");
+  },
+  render: (h) => h(App),
+}).$mount("#app");
 
+store.subscribe((mutation, state) => {
+  // Store the state object as a JSON string
+  localStorage.setItem("store", JSON.stringify(state));
+});
 

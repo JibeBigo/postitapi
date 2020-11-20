@@ -8,7 +8,6 @@
               <b-card-body
                 border-variant="warning"
                 class="my-2 shadow-sm transition-swing d-flex text-left align-items-center"
-                color="primary"
                 ref="content"
                 dark
                 v-bind="attrs"
@@ -40,10 +39,13 @@
                 <v-color-picker
                   class="ma-2"
                   dot-size="30"
-                  v-model="picker"
+                  v-model="color"
                   hide-canvas
                   hide-mode-switch
+                  disabled
                   hide-inputs
+                  show-swatches
+                  :swatches="swatches"
                 ></v-color-picker>
                 <v-btn color="blue darken-1" text @click="changeColor()">
                   Edit Color
@@ -67,7 +69,12 @@ export default {
   data() {
     return {
       dialogDelete: false,
-      picker: null,
+      color: "",
+      swatches: [
+        ['#FF00003D', "#FFEB0042"],
+        ['#0040FF38', "#00EFFF44"],
+        ["#02FF004D", '#FF00D532'],
+      ],
     };
   },
   methods: {
@@ -83,9 +90,7 @@ export default {
       });
     },
     changeColor() {
-      const rgba = this.picker.rgba;
-      this.$refs.content.style.backgroundColor = `rgba(${rgba.r},${rgba.g},${rgba.b},0.2`;
-      this.$refs.content.style.borderColor = `rgba(${rgba.r},${rgba.g},${rgba.b},0.2`;
+      this.$refs.content.style.backgroundColor = this.color;
       this.dialogDelete = false;
     },
   },
@@ -95,8 +100,7 @@ export default {
 <style scoped>
 .card-body {
   padding: 1rem;
-  background-color: rgba(255, 217, 0, 0.2);
-  border: 1px solid rgba(255, 217, 0, 0.2);
+  background-color: rgba(253, 235, 0, 0.29);
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) calc(0.25rem - 1px)
     calc(0.25rem - 1px);
 }

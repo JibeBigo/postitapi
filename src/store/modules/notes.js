@@ -3,20 +3,26 @@ import axios from "axios";
 const state = {
   notes: [],
 };
+
+
 const getters = {
-  allNotes: (state) => state.notes, // without filtering empty notes
+  allNotes: (state) => state.notes,
 };
+
+
 const actions = {
   async fetchNotes({ commit }) {
     const response = await axios.get("http://postit.wac.under-wolf.eu/notes/");
     commit("setNotes", response.data.notes);
   },
+
   async fetchNote(id) {
     const response = await axios.get(
       `http://postit.wac.under-wolf.eu/notes/${id}`,
     );
     return response.data._id;
   },
+
   async addNote({ commit }, title) {
     var response = await axios.post("http://postit.wac.under-wolf.eu/notes/", {
       title,
@@ -29,10 +35,12 @@ const actions = {
     // const newNote = actions.fetchNote(response.data.note._id);
     // commit("newNote", newNote);
   },
+
   async deleteNote({ commit }, id) {
     await axios.delete(`http://postit.wac.under-wolf.eu/notes/${id}`);
     commit("removeNote", id);
   },
+
   async addContent({ commit }, note) {
     const response = await axios.put(
       `http://postit.wac.under-wolf.eu/notes/${note.id}`,
@@ -40,7 +48,8 @@ const actions = {
     );
     commit("newContent", { id: response.data.note_id, content: note.content });
   },
-  async deleteContentItem( {commit}, editedNote ) {
+
+  async deleteContentItem( { commit }, editedNote ) {
     const response = await axios.put(
       `http://postit.wac.under-wolf.eu/notes/${editedNote.id}`,
       { title: editedNote.title, content: editedNote.newContent },
@@ -48,6 +57,8 @@ const actions = {
     commit("removeContent", { id: response.data.note_id, content: editedNote.newContent });
   },
 };
+
+
 const mutations = {
   setNotes: (state, notes) => (state.notes = notes),
   newNote: (state, note) => state.notes.unshift(note),

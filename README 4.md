@@ -1,23 +1,18 @@
 # vuejspostit
 
-This is my beautiful NoteIt app for which I even made a logo.
-With these shared notes app, you can enjoy the content while the others are not deleting the Notes from the API.
-Very handy indeed.
+With NoteIt (even made a slick logo for it), you can:
 
-With this app you can:
--Add a note
--Add content to the note you created
--Delete a note
--Delete content
+- Add Notes (big squares)
+- Add Content to these notes (tasks)
+- Delete Notes & Content
 
-I figured editing the content of a note or the note title would be doing the same thing as deleting a note's content so I didn't bother with it.
+Everything is pulled and pushed from an API endpoint and shared with everybody which is really handy as everyone can delete each other's notes and add their own.
 
-Also you can modify the color of a content in the same way real postit notes are made.
-I wish the contents were objects it would have been much simpler to add a "color" attribute so the color could be saved overtime.
-A simple reload lose the changes for now.
-Same goes for the drag and drop of the content within a note (nice touch though).
+Tried to make a pretty slick design, following the original theme of commonly used Post It notes.
 
-Enjoy the testing, I put an emphasis on design because I believe it's important too.
+I've decided to not add the edition of note title or it's content as it follows the samed idead as editing the content and wouldn't be super useful.
+
+I added a draggable content inside the notes instead. It doesn't save to the API but it looks pretty nice before you refresh the page.
 
 ## Project setup
 
