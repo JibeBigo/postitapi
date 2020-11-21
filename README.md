@@ -10,6 +10,7 @@ With this app you can:
 -Delete a note
 -Delete content
 -Saves data to localStorage so we still render the prev version if we can't fetch from the API
+-Search the notes by title only
 
 I figured editing the content of a note or the note title would be doing the same thing as deleting a note's content so I didn't bother with it.
 
