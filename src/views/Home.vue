@@ -66,7 +66,7 @@ export default {
     ...mapGetters(["allNotes"]),
     filteredNotes: function () {
       return this.allNotes.filter((note) => {
-        return note.title.match(this.search)
+        return note.title.toLowerCase().match(this.search.toLowerCase())
       });
     },
   },
