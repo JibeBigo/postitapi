@@ -1,41 +1,42 @@
 <template>
   <div class="home">
-    <!-- <v-btn color="red" depressed class="mt-4 mb-4 white--text">
-      <v-icon color="white" left>
-        mdi-delete
-      </v-icon>
-      Delete All Notes
-    </v-btn> -->
     <div class="container">
-
-    <div class="d-flex flex-row flex-wrap justify-content-start">
-      <AddNote />
-      <div data-app class="note" v-for="note in allNotes" :key="note.id">
-        <b-card
-          class="m-2 shadow-sm"
-          border-variant="primary"
-          :header="note.title"
-          header-bg-variant="primary"
-          header-text-variant="white"
-          header-class="text-left"
-          align="center"
-        >
-          <template v-slot:header>
-            <b-nav
-              card-header
-              tabs
-              class="d-flex justify-content-between flex-nowrap align-items-baseline pl-1"
-            >
-              <b-card-text >{{ note.title }}</b-card-text>
-              <a href="#" @click="deleteNote(note._id)"
-                ><b-icon icon="trash" variant="white"></b-icon
-              ></a>
-            </b-nav>
-          </template>
-          <Note v-bind:note="note" />
-        </b-card>
+      <v-text-field
+        class="mb-5"
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
+      <div class="d-flex flex-row flex-wrap justify-content-start">
+        <AddNote />
+        <div data-app class="note" v-for="note in filteredNotes" :key="note.id">
+          <b-card
+            class="m-2 shadow-sm"
+            border-variant="primary"
+            :header="note.title"
+            header-bg-variant="primary"
+            header-text-variant="white"
+            header-class="text-left"
+            align="center"
+          >
+            <template v-slot:header>
+              <b-nav
+                card-header
+                tabs
+                class="d-flex justify-content-between flex-nowrap align-items-baseline pl-1"
+              >
+                <b-card-text>{{ note.title }}</b-card-text>
+                <a href="#" @click="deleteNote(note._id)"
+                  ><b-icon icon="trash" variant="white"></b-icon
+                ></a>
+              </b-nav>
+            </template>
+            <Note v-bind:note="note" />
+          </b-card>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 </template>
@@ -49,6 +50,11 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Home",
+  data() {
+    return {
+      search: "",
+    };
+  },
   components: {
     Note,
     AddNote,
@@ -56,7 +62,14 @@ export default {
   methods: {
     ...mapActions(["fetchNotes", "deleteNote"]),
   },
-  computed: mapGetters(["allNotes"]),
+  computed: {
+    ...mapGetters(["allNotes"]),
+    filteredNotes: function () {
+      return this.allNotes.filter((note) => {
+        return note.title.match(this.search)
+      });
+    },
+  },
   created() {
     this.fetchNotes();
   },
@@ -71,9 +84,8 @@ export default {
   height: 20rem;
 
   width: 18rem;
-
 }
-.card-header{
+.card-header {
   padding: 0.5rem 1rem;
 }
 .card-body {
@@ -90,7 +102,7 @@ export default {
   background-color: rgba(90, 90, 90, 0.144);
   box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
-.container{
+.container {
   max-width: 1250px;
 }
 </style>
